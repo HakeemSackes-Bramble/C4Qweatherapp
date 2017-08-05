@@ -23,9 +23,14 @@ class ForecastViewHolder extends RecyclerView.ViewHolder {
         lowTemp = (TextView) itemView.findViewById(R.id.low_temp);
     }
 
-    public void bind(Period day) {
+    public void bind(Period day, int tempType) {
         date.setText(day.getValidTime().substring(0, 10));
-        highTemp.setText(day.getMaxTempF());
-        lowTemp.setText(day.getMinTempF());
+        if (tempType == 0) {
+            highTemp.setText("HIGH " + day.getMaxTempF() + " F");
+            lowTemp.setText("LOW " + day.getMinTempF() + " F");
+        } else {
+            highTemp.setText("HIGH " + day.getMaxTempC() + " C");
+            lowTemp.setText("LOW " + day.getMinTempC() + " C");
+        }
     }
 }

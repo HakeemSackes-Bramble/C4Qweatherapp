@@ -18,10 +18,15 @@ import static android.content.ContentValues.TAG;
  */
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastViewHolder> {
+
+
+    private int tempType;
     List<Period> days;
 
-    public ForecastAdapter(List<Period> days) {
+
+    public ForecastAdapter(List<Period> days, int tempType) {
         this.days = days;
+        this.tempType = tempType;
     }
 
     @Override
@@ -34,15 +39,24 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastViewHolder> {
     @Override
     public void onBindViewHolder(ForecastViewHolder holder, int position) {
         Period day = days.get(position);
-        holder.bind(day);
+        holder.bind(day, tempType);
     }
 
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount: " + days.size());
-        if(days == null){
-            return 0;}
+        if (days == null) {
+            return 0;
+        }
         return days.size();
 
+    }
+
+    public void setTempType(int tempType) {
+        this.tempType = tempType;
+    }
+
+    public int getTempType() {
+        return tempType;
     }
 }

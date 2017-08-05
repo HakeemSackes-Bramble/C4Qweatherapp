@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ForcastClient {
     private static final String baseUrl = "http://api.aerisapi.com/";
+    private ForecastAdapter forecastAdapter;
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
@@ -39,7 +40,7 @@ public class ForcastClient {
       //  connectToServer(baseUrl);
     }
 
-    public void connectToServer(String baseUrl, final Context context,final RecyclerView rv) {
+    public void connectToServer(String baseUrl, final Context context, final RecyclerView rv, final int tempType) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         ForecastService service = retrofit.create(ForecastService.class);
@@ -52,7 +53,8 @@ public class ForcastClient {
                 System.out.println("onResponse: " + childCareResponse.getResponses().get(0).getPeriods());
                 recyclerView = rv;
                 recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-                recyclerView.setAdapter(new ForecastAdapter(weatherPeriods));
+                forecastAdapter = new ForecastAdapter(weatherPeriods, tempType);
+                recyclerView.setAdapter(forecastAdapter);
             }
 
             @Override
@@ -60,5 +62,9 @@ public class ForcastClient {
                 //Log.d(TAG, "Failed to connect");
             }
         });
+    }
+    public void changeTempType(int tempType){
+        forecastAdapter.setTempType(tempType);
+        recyclerView.setAdapter(forecastAdapter);
     }
 }
