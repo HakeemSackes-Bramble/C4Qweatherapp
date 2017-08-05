@@ -53,7 +53,7 @@ public class ForcastClient {
                 System.out.println("onResponse: " + childCareResponse.getResponses().get(0).getPeriods());
                 recyclerView = rv;
                 recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-                forecastAdapter = new ForecastAdapter(weatherPeriods, tempType);
+                forecastAdapter = new ForecastAdapter(weatherPeriods, tempType, context);
                 recyclerView.setAdapter(forecastAdapter);
             }
 

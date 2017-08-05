@@ -1,5 +1,6 @@
 package nyc.c4q.hakeemsackes_bramble.c4qweatherapp.forecast_recyclerview;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,14 +20,15 @@ import static android.content.ContentValues.TAG;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastViewHolder> {
 
-
     private int tempType;
     List<Period> days;
+    private Context context;
 
 
-    public ForecastAdapter(List<Period> days, int tempType) {
+    public ForecastAdapter(List<Period> days, int tempType, Context context) {
         this.days = days;
         this.tempType = tempType;
+        this.context = context;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastViewHolder> {
     @Override
     public void onBindViewHolder(ForecastViewHolder holder, int position) {
         Period day = days.get(position);
-        holder.bind(day, tempType);
+        holder.bind(day, tempType, context);
     }
 
     @Override
@@ -56,7 +58,4 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastViewHolder> {
         this.tempType = tempType;
     }
 
-    public int getTempType() {
-        return tempType;
-    }
 }

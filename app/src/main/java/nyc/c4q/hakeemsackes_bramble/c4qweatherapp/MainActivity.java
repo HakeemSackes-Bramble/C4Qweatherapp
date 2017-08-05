@@ -16,16 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private ForcastClient forcastClient;
     private int tempType;
 
-    public ArrayList<Period> getForecast() {
-        return forecast;
-    }
-
-    public void setForecast(ArrayList<Period> forecast) {
-        this.forecast = forecast;
-    }
 
     ArrayList<Period> forecast;
-    private RecyclerView recyclerView;
     private final String baseUrl = "http://api.aerisapi.com/";
     Button button;
 
@@ -38,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         forcastClient.connectToServer(baseUrl,getApplicationContext(),(RecyclerView) findViewById(R.id.forecast_recyclerview), tempType);
         Log.d("TAG", "onCreate: "+ forecast);
         button = (Button) findViewById(R.id.temp_type_main);
-        button.setText("Get Celsius");
+        button.setText("Show Celsius");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 tempType %= 2;
                 forcastClient.changeTempType(tempType);
                 if(tempType == 1){
-                    button.setText("Get Fahrenheit");
+                    button.setText("Show Fahrenheit");
                 }else {
-                    button.setText("Get Celsius");
+                    button.setText("Show Celsius");
                 }
             }
         });
