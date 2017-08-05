@@ -1,4 +1,6 @@
-package nyc.c4q.hakeemsackes_bramble.c4qweatherapp.WeatherApi;
+package nyc.c4q.hakeemsackes_bramble.c4qweatherapp.weather_api;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
@@ -7,6 +9,9 @@ import java.util.ArrayList;
  */
 
 public class ForcastResponse {
+
+
+    @SerializedName("periods")
     ArrayList<Period> periods;
 
     public ArrayList<Period> getPeriods() {

@@ -1,19 +1,34 @@
-package nyc.c4q.hakeemsackes_bramble.c4qweatherapp.WeatherApi;
+package nyc.c4q.hakeemsackes_bramble.c4qweatherapp.weather_api;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by hakeemsackes-bramble on 8/4/17.
  */
 
-class Period {
+public class Period {
+
+    @SerializedName("timestamp")
     String timestamp;
+
+    @SerializedName("validTime")
     String validTime;
+
+    @SerializedName("dateTimeISO")
     String dateTimeISO;
+
+    @SerializedName("maxTempC")
     String maxTempC;
+
+    @SerializedName("maxTempF")
     String maxTempF;
+
+    @SerializedName("minTempC")
     String minTempC;
+
+    @SerializedName("minTempF")
     String minTempF;
-    String avgTempC;
-    String avgTempF;
+
 
     public String getTimestamp() {
         return timestamp;
@@ -71,19 +86,5 @@ class Period {
         this.minTempF = minTempF;
     }
 
-    public String getAvgTempC() {
-        return avgTempC;
-    }
 
-    public void setAvgTempC(String avgTempC) {
-        this.avgTempC = avgTempC;
-    }
-
-    public String getAvgTempF() {
-        return avgTempF;
-    }
-
-    public void setAvgTempF(String avgTempF) {
-        this.avgTempF = avgTempF;
-    }
 }
