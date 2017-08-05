@@ -11,7 +11,7 @@
     >
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/temp_type"
         android:textSize="30dp">
@@ -19,10 +19,9 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:id="@+id/forecast_recyclerview">
 
     </android.support.v7.widget.RecyclerView>
-
 
 </LinearLayout>

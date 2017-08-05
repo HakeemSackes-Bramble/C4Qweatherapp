@@ -8,11 +8,11 @@ import java.util.ArrayList;
  * Created by hakeemsackes-bramble on 8/4/17.
  */
 
-public class ForcastResponse {
+public class Response {
 
 
     @SerializedName("periods")
-    ArrayList<Period> periods;
+    private ArrayList<Period> periods;
 
     public ArrayList<Period> getPeriods() {
         return periods;

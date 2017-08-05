@@ -8,8 +8,8 @@ import retrofit2.http.Query;
  * Created by hakeemsackes-bramble on 8/4/17.
  */
 
-public interface ForcastService {
-    @GET("forecasts/11101")
-    Call<ForcastResponse> getData(@Query("client_id") String CLIENT_ID, @Query("client_secret") String CLIENT_SECRET);
+public interface ForecastService {
+    @GET("/forecasts/11101")
+    Call<ForecastResponse> getData(@Query("client_id") String CLIENT_ID, @Query("client_secret") String CLIENT_SECRET);
 }
 
