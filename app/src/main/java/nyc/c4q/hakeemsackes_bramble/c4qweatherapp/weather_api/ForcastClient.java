@@ -21,11 +21,8 @@ public class ForcastClient {
     private static final String baseUrl = "http://api.aerisapi.com/";
     private ForecastAdapter forecastAdapter;
 
-    public RecyclerView getRecyclerView() {
-        return recyclerView;
-    }
-
     private RecyclerView recyclerView;
+    private boolean isReadyToChange;
 
     public ForcastClient() {
     }
@@ -36,11 +33,8 @@ public class ForcastClient {
 
     private static ArrayList<Period> weatherPeriods;
 
-    public static void main(String[] args) {
-      //  connectToServer(baseUrl);
-    }
-
     public void connectToServer(String baseUrl, final Context context, final RecyclerView rv, final int tempType) {
+        isReadyToChange = false;
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         ForecastService service = retrofit.create(ForecastService.class);
@@ -55,6 +49,7 @@ public class ForcastClient {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 forecastAdapter = new ForecastAdapter(weatherPeriods, tempType, context);
                 recyclerView.setAdapter(forecastAdapter);
+                isReadyToChange = true;
             }
 
             @Override
@@ -63,8 +58,15 @@ public class ForcastClient {
             }
         });
     }
-    public void changeTempType(int tempType){
+
+    public boolean isReadyToChange() {
+        return isReadyToChange;
+    }
+
+    public void changeTempType(int tempType) {
+
         forecastAdapter.setTempType(tempType);
         recyclerView.setAdapter(forecastAdapter);
+
     }
 }

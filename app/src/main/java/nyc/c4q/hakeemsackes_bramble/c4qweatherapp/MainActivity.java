@@ -26,21 +26,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        forcastClient =  new ForcastClient();
-        forcastClient.connectToServer(baseUrl,getApplicationContext(),(RecyclerView) findViewById(R.id.forecast_recyclerview), tempType);
-        Log.d("TAG", "onCreate: "+ forecast);
+        forcastClient = new ForcastClient();
+        forcastClient.connectToServer(baseUrl, getApplicationContext(), (RecyclerView) findViewById(R.id.forecast_recyclerview), tempType);
+        Log.d("TAG", "onCreate: " + forecast);
         button = (Button) findViewById(R.id.temp_type_main);
         button.setText("Show Celsius");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tempType += 1;
-                tempType %= 2;
-                forcastClient.changeTempType(tempType);
-                if(tempType == 1){
-                    button.setText("Show Fahrenheit");
-                }else {
-                    button.setText("Show Celsius");
+                if (forcastClient.isReadyToChange()) {
+                    tempType += 1;
+                    tempType %= 2;
+                    forcastClient.changeTempType(tempType);
+                    if (tempType == 1) {
+                        button.setText("Show Fahrenheit");
+                    } else {
+                        button.setText("Show Celsius");
+                    }
                 }
             }
         });
